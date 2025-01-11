@@ -1,4 +1,4 @@
-const urlParams = new URLSearchParams(window.location.search);
-const src = urlParams.get('src');
-
-console.log(src);
+window.onload = function() {
+    const root = document.querySelector("#root");
+    root.innerHTML = "src: " + source;
+}
