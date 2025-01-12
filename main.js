@@ -45,7 +45,7 @@ function loadSinks() {
 }
 
 function loadButtons() {
-    const buttons = document.querySelectorAll(".link");
+    const buttons = document.querySelectorAll(":not(a).link");
     for (const button of buttons) {
         const href = button.getAttribute("href");
         button.onclick = function () {
@@ -61,6 +61,9 @@ function loadPage(page) {
             loadButtons();
             if (page === "/gallery")
                 loadGallery();
+            
+            if (page === "/news" || page === "/gallery")
+                loadTimeline();
             res();
         })
     })
@@ -78,8 +81,6 @@ function loadGallery() {
                             const imageElement = document.createElement("img");
                             const title = document.createElement("div");
                             imageElement.setAttribute("src", "/images/" + src);
-                            imageElement.setAttribute("width", 200);
-                            imageElement.setAttribute("height", 200);
                             title.innerText = `submitted by "${username}"`;
                             display.appendChild(imageElement);
                             display.appendChild(title);
@@ -88,6 +89,10 @@ function loadGallery() {
                     }
                 })
         })
+}
+
+function loadTimeline() {
+
 }
 
 function moveTo(url) {
