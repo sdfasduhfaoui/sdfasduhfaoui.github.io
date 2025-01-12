@@ -31,7 +31,7 @@ function loadSinks() {
                     })
             }))
         }
-        
+
         Promise.allSettled(promises)
             .then(results => {
                 for (const result of results) {
@@ -42,7 +42,6 @@ function loadSinks() {
                 resolve();
             })
     })
-
 }
 
 function loadButtons() {
@@ -60,9 +59,35 @@ function loadPage(page) {
         load(page).then(body => {
             document.querySelector("#main").innerHTML = body;
             loadButtons();
+            if (page === "/gallery")
+                loadGallery();
             res();
         })
     })
+}
+
+function loadGallery() {
+    fetch("/images/spec.json")
+        .then(response => {
+            response.json()
+                .then(images => {
+                    for (const image of images) {
+                        const { username } = image;
+                        for (const src of image.images) {
+                            const display = document.createElement("div");
+                            const imageElement = document.createElement("img");
+                            const title = document.createElement("div");
+                            imageElement.setAttribute("src", "/images/" + src);
+                            imageElement.setAttribute("width", 200);
+                            imageElement.setAttribute("height", 200);
+                            title.innerText = `submitted by "${username}"`;
+                            display.appendChild(imageElement);
+                            display.appendChild(title);
+                            document.querySelector("#gallery").appendChild(display);
+                        }
+                    }
+                })
+        })
 }
 
 function moveTo(url) {
