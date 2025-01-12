@@ -131,12 +131,12 @@ body {
 #gallery {
     display: flex;
     flex-wrap: wrap;
-    column-gap: 5%;
-    row-gap: 25px;
+    column-gap: 2%;
+    row-gap: 8px;
 }
 
 #gallery > div {
-    flex-basis: 30%;
+    flex-basis: 32%;
     height: fit-content;
 }
 

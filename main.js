@@ -79,11 +79,8 @@ function loadGallery() {
                         for (const src of image.images) {
                             const display = document.createElement("div");
                             const imageElement = document.createElement("img");
-                            const title = document.createElement("div");
                             imageElement.setAttribute("src", "/images/" + src);
-                            title.innerText = `submitted by "${username}"`;
                             display.appendChild(imageElement);
-                            display.appendChild(title);
                             document.querySelector("#gallery").appendChild(display);
                         }
                     }
